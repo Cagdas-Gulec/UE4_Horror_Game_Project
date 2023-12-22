@@ -8,6 +8,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -31,6 +32,12 @@ public:
 	
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, Category = Camera)
 		UCameraComponent* FollowCamera;
+
+	UPROPERTY(EditAnywhere)
+	UBoxComponent* InteractionBox;
+
+	UFUNCTION()
+	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult); 
 
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
