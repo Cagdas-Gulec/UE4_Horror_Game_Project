@@ -18,8 +18,7 @@ AMyCharacter::AMyCharacter()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
-	//GetCharacterMovement()->JumpZVelocity = 6000.0f;
-	//GetCharacterMovement()->AirControl = 0.2f;
+	
 
 	CameraBoom = CreateAbstractDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	
@@ -52,8 +51,7 @@ void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	/*InteractionBox->OnComponentBeginOverlap.AddDynamic(this, &AMyCharacter::OnBoxBeginOverlap);
-	InteractionBox->OnComponentEndOverlap.AddDynamic(this, &AMyCharacter::OnBoxEndOverlap);*/
+	
 }
 
 // Called every frame
@@ -105,8 +103,6 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 
-	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
@@ -116,27 +112,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 }
 
-//void AMyCharacter::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
-//	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-//{
-//	Interface = Cast<IInteractionInterface>(OtherActor);
-//
-//
-//	if (Interface) {
-//		Interface->ShowInteractionWidget();
-//	}
-//
-//
-//
-//}
-//
-//void AMyCharacter::OnBoxEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-//{
-//	if (Interface) {
-//		Interface->HideInteractionWidget();
-//		Interface = nullptr;
-//	}
-//}
+
 
 void AMyCharacter::MoveForward(float Axis)
 {
