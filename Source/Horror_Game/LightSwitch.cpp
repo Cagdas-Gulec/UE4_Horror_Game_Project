@@ -19,7 +19,9 @@ ALightSwitch::ALightSwitch()
 	Light = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb"));
 	Light->SetupAttachment(RootComponent);
 
-
+	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
+	InteractionWidget->SetupAttachment(RootComponent); 
+	
 
 }
 
@@ -28,6 +30,7 @@ void ALightSwitch::BeginPlay()
 {
 	Super::BeginPlay();
 	Light->SetIntensity(0);
+	InteractionWidget->SetVisibility(false);
 }
 
 // Called every frame
@@ -50,5 +53,15 @@ void ALightSwitch::InteractWithMe()
 		bIsOn = true;
 	}
 
+}
+
+void ALightSwitch::ShowInteractionWidget()
+{
+	InteractionWidget->SetVisibility(true);
+}
+
+void ALightSwitch::HideInteractionWidget()
+{
+	InteractionWidget->SetVisibility(false);
 }
 

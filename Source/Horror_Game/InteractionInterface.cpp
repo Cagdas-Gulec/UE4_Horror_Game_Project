@@ -10,3 +10,11 @@ void IInteractionInterface::InteractWithMe()
 }
 
 //comment
+
+void IInteractionInterface::ShowInteractionWidget()
+{
+}
+
+void IInteractionInterface::HideInteractionWidget()
+{
+}
