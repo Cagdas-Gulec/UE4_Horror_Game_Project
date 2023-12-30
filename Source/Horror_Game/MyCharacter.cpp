@@ -2,6 +2,7 @@
 
 
 #include "MyCharacter.h"
+#include "InteractionInterface.h"
 
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -37,9 +38,9 @@ AMyCharacter::AMyCharacter()
 	InteractionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Interaction box"));
 	InteractionBox->SetupAttachment(RootComponent);
 
-	InteractionBox->OnComponentBeginOverlap.AddDynamic(this, &AMyCharacter::OnBoxBeginOverlap);
 
 
+	
 }
 
 
@@ -51,6 +52,7 @@ void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	InteractionBox->OnComponentBeginOverlap.AddDynamic(this, &AMyCharacter::OnBoxBeginOverlap);
 }
 
 // Called every frame
@@ -74,10 +76,21 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
 
+
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &AMyCharacter::OnInteract);
+
 }
 
-void AMyCharacter::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AMyCharacter::OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, 
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	Interface = Cast<IInteractionInterface>(OtherActor);
+
+
+	if (Interface) {
+		Interface->InteractWithMe();
+	}
+
 }
 
 void AMyCharacter::MoveForward(float Axis)
@@ -111,4 +124,14 @@ void AMyCharacter::MoveRight(float Axis)
 
 
 
+}
+
+
+
+void AMyCharacter::OnInteract() {
+
+
+	if (Interface) {
+		Interface->InteractWithMe();
+	}
 }

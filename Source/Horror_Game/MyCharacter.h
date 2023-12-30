@@ -12,7 +12,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-
+#include "InteractionInterface.h"
 #include "Blueprint/UserWidget.h"
 
 
@@ -33,18 +33,11 @@ public:
 	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, Category = Camera)
 		UCameraComponent* FollowCamera;
 
-	UPROPERTY(EditAnywhere)
-	UBoxComponent* InteractionBox;
-
-	UFUNCTION()
-	void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult); 
-
+	
 	void MoveForward(float Axis);
 	void MoveRight(float Axis);
 
 	bool bDead;
-
-
 
 
 protected:
@@ -58,4 +51,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
+private:
+	UPROPERTY(EditAnywhere)
+	UBoxComponent* InteractionBox;
+
+	IInteractionInterface* Interface = nullptr;
+
+	void OnInteract();
+
+	UFUNCTION()
+		void OnBoxBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
 };
