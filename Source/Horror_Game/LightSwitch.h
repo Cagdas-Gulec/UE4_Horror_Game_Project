@@ -42,6 +42,12 @@ private:
 		UPointLightComponent* Light;
 
 	UPROPERTY(EditAnywhere)
+		UPointLightComponent* Light2;
+
+	UPROPERTY(EditAnywhere)
+		UPointLightComponent* Light3;
+
+	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
 
 	bool bIsOn = false;

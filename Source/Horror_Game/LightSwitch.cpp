@@ -19,6 +19,12 @@ ALightSwitch::ALightSwitch()
 	Light = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb"));
 	Light->SetupAttachment(RootComponent);
 
+	Light2 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb2"));
+	Light2->SetupAttachment(RootComponent);
+
+	Light3 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb3"));
+	Light3->SetupAttachment(RootComponent);
+
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
 	InteractionWidget->SetupAttachment(RootComponent); 
 	
@@ -30,6 +36,8 @@ void ALightSwitch::BeginPlay()
 {
 	Super::BeginPlay();
 	Light->SetIntensity(0);
+	Light2->SetIntensity(0);
+	Light3->SetIntensity(0);
 	InteractionWidget->SetVisibility(false);
 }
 
@@ -45,11 +53,15 @@ void ALightSwitch::InteractWithMe()
 	UE_LOG(LogTemp, Warning, TEXT("You have interacted with me."));
 	if (bIsOn) {
 		Light->SetIntensity(0);
+		Light2->SetIntensity(0);
+		Light3->SetIntensity(0);
 		bIsOn = false;
 	}
 	else
 	{
 		Light->SetIntensity(1000);
+		Light2->SetIntensity(1000);
+		Light3->SetIntensity(1000);
 		bIsOn = true;
 	}
 
