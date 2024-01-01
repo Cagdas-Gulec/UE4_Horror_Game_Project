@@ -37,6 +37,10 @@ void ACabinet::Tick(float DeltaTime)
 
 void ACabinet::InteractWithMe() {
 	UE_LOG(LogTemp, Warning, TEXT("You have interacted with me."));
+
+	// sanki buraya ses gelecek.
+
+
 }
 
 void ACabinet::ShowInteractionWidget() {

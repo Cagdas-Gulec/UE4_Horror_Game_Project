@@ -56,6 +56,9 @@ void ALightSwitch::InteractWithMe()
 		Light2->SetIntensity(0);
 		Light3->SetIntensity(0);
 		bIsOn = false;
+
+		// sanki buraya açýlma sesi gelecek.
+
 	}
 	else
 	{
@@ -63,6 +66,8 @@ void ALightSwitch::InteractWithMe()
 		Light2->SetIntensity(1000);
 		Light3->SetIntensity(1000);
 		bIsOn = true;
+
+		// sanki buraya kapanma sesi gelecek.
 	}
 
 }
