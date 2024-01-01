@@ -35,9 +35,9 @@ ALightSwitch::ALightSwitch()
 void ALightSwitch::BeginPlay()
 {
 	Super::BeginPlay();
-	Light->SetIntensity(0);
-	Light2->SetIntensity(0);
-	Light3->SetIntensity(0);
+	Light->SetIntensity(1000);
+	Light2->SetIntensity(1000);
+	Light3->SetIntensity(1000);
 	InteractionWidget->SetVisibility(false);
 }
 

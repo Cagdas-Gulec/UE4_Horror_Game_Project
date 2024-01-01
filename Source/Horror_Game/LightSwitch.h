@@ -50,6 +50,6 @@ private:
 	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
 
-	bool bIsOn = false;
+	bool bIsOn = true;
 
 };
