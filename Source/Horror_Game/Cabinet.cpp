@@ -38,7 +38,7 @@ void ACabinet::Tick(float DeltaTime)
 void ACabinet::InteractWithMe() {
 	UE_LOG(LogTemp, Warning, TEXT("You have interacted with me."));
 
-	// sanki buraya ses gelecek.
+	UGameplayStatics::PlaySound2D(GetWorld(), ClothChangeSound, 1, 1, 0, NULL, false, true);
 
 
 }

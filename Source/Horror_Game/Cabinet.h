@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "InteractionInterface.h"
 #include "Components/WidgetComponent.h"
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Cabinet.generated.h"
 
 UCLASS()
@@ -36,6 +38,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* CabinetMesh;
+
+	UPROPERTY(EditAnywhere) class USoundBase* ClothChangeSound;
 
 	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
