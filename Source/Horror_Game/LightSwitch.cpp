@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "Components/AudioComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "LightSwitch.h"
 
 // Sets default values
@@ -42,6 +43,10 @@ ALightSwitch::ALightSwitch()
 
 	Light9 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb9"));
 	Light9->SetupAttachment(RootComponent);
+
+	PowerUpSound = CreateDefaultSubobject<USoundBase>(TEXT("PowerUpSound"));
+
+	PowerDownSound = CreateDefaultSubobject<USoundBase>(TEXT("PowerDownSound"));
 
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
 	InteractionWidget->SetupAttachment(RootComponent); 
@@ -85,6 +90,7 @@ void ALightSwitch::InteractWithMe()
 		Light7->SetIntensity(0);
 		Light8->SetIntensity(0);
 		Light9->SetIntensity(0);
+		UGameplayStatics::PlaySound2D(GetWorld(), PowerDownSound, 1, 1, 0, NULL, false, true);
 		bIsOn = false;
 
 		// sanki buraya açýlma sesi gelecek.
@@ -101,6 +107,7 @@ void ALightSwitch::InteractWithMe()
 		Light7->SetIntensity(1000);
 		Light8->SetIntensity(1000);
 		Light9->SetIntensity(1000);
+		UGameplayStatics::PlaySound2D(GetWorld(), PowerUpSound, 1, 1, 0, NULL, false, true);
 		bIsOn = true;
 
 		// sanki buraya kapanma sesi gelecek.

@@ -34,7 +34,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	USceneComponent* _RootComponent;
 
-
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* LightSwitchMesh;
 
@@ -64,6 +63,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		UPointLightComponent* Light9;
+
+	UPROPERTY(EditAnywhere) class USoundBase* PowerUpSound;
+
+	UPROPERTY(EditAnywhere) class USoundBase* PowerDownSound;
 
 	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
