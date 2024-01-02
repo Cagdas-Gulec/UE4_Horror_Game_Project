@@ -25,6 +25,24 @@ ALightSwitch::ALightSwitch()
 	Light3 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb3"));
 	Light3->SetupAttachment(RootComponent);
 
+	Light4 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb4"));
+	Light4->SetupAttachment(RootComponent);
+
+	Light5 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb5"));
+	Light5->SetupAttachment(RootComponent);
+
+	Light6 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb6"));
+	Light6->SetupAttachment(RootComponent);
+
+	Light7 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb7"));
+	Light7->SetupAttachment(RootComponent);
+
+	Light8 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb8"));
+	Light8->SetupAttachment(RootComponent);
+
+	Light9 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb9"));
+	Light9->SetupAttachment(RootComponent);
+
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
 	InteractionWidget->SetupAttachment(RootComponent); 
 	
@@ -38,6 +56,12 @@ void ALightSwitch::BeginPlay()
 	Light->SetIntensity(1000);
 	Light2->SetIntensity(1000);
 	Light3->SetIntensity(1000);
+	Light4->SetIntensity(1000);
+	Light5->SetIntensity(1000);
+	Light6->SetIntensity(1000);
+	Light7->SetIntensity(1000);
+	Light8->SetIntensity(1000);
+	Light9->SetIntensity(1000);
 	InteractionWidget->SetVisibility(false);
 }
 
@@ -55,6 +79,12 @@ void ALightSwitch::InteractWithMe()
 		Light->SetIntensity(0);
 		Light2->SetIntensity(0);
 		Light3->SetIntensity(0);
+		Light4->SetIntensity(0);
+		Light5->SetIntensity(0);
+		Light6->SetIntensity(0);
+		Light7->SetIntensity(0);
+		Light8->SetIntensity(0);
+		Light9->SetIntensity(0);
 		bIsOn = false;
 
 		// sanki buraya açýlma sesi gelecek.
@@ -65,6 +95,12 @@ void ALightSwitch::InteractWithMe()
 		Light->SetIntensity(1000);
 		Light2->SetIntensity(1000);
 		Light3->SetIntensity(1000);
+		Light4->SetIntensity(1000);
+		Light5->SetIntensity(1000);
+		Light6->SetIntensity(1000);
+		Light7->SetIntensity(1000);
+		Light8->SetIntensity(1000);
+		Light9->SetIntensity(1000);
 		bIsOn = true;
 
 		// sanki buraya kapanma sesi gelecek.
