@@ -2,6 +2,7 @@
 
 
 #include "LandPhone.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 ALandPhone::ALandPhone()
@@ -41,7 +42,7 @@ void ALandPhone::InteractWithMe() {
 
 	// sanki buraya ses gelecek.
 
-
+	UGameplayStatics::OpenLevel(GetWorld(), "ToBeContEndGameMap");
 }
 
 void ALandPhone::ShowInteractionWidget() {
