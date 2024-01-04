@@ -125,3 +125,9 @@ void ALightSwitch::HideInteractionWidget()
 	InteractionWidget->SetVisibility(false);
 }
 
+void ALightSwitch::UgaBuga()
+{
+
+	InteractWithMe();
+}
+

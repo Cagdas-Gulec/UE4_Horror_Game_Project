@@ -30,6 +30,9 @@ public:
 	virtual void ShowInteractionWidget() override;
 	virtual void HideInteractionWidget() override;
 
+	UFUNCTION(BlueprintCallable)
+		void UgaBuga();
+
 private:
 	UPROPERTY(EditAnywhere)
 	USceneComponent* _RootComponent;
