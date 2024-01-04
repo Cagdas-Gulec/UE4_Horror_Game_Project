@@ -39,7 +39,8 @@ private:
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* CabinetMesh;
 
-	UPROPERTY(EditAnywhere) class USoundBase* ClothChangeSound;
+	UPROPERTY(EditAnywhere) 
+		class USoundBase* ClothChangeSound;
 
 	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
