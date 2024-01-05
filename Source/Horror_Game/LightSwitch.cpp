@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Components/AudioComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "LightSwitch.h"
@@ -10,13 +8,15 @@ ALightSwitch::ALightSwitch()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-
+	//Creating main root component of light switch which will hold other components.
 	_RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root Component"));
 	RootComponent = _RootComponent;
 
+	//Creating mesh of light switch.
 	LightSwitchMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LightSwitchMesh"));
 	LightSwitchMesh->SetupAttachment(RootComponent);
 
+	//Creating nine point lights for house's lightning.
 	Light = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb"));
 	Light->SetupAttachment(RootComponent);
 
@@ -44,20 +44,20 @@ ALightSwitch::ALightSwitch()
 	Light9 = CreateDefaultSubobject<UPointLightComponent>(TEXT("LightBulb9"));
 	Light9->SetupAttachment(RootComponent);
 
+	//Creating slots for power up and power down sounds.
 	PowerUpSound = CreateDefaultSubobject<USoundBase>(TEXT("PowerUpSound"));
-
 	PowerDownSound = CreateDefaultSubobject<USoundBase>(TEXT("PowerDownSound"));
 
+	//Creating an interaction widget which is used to print "E" letter above the switch.
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
 	InteractionWidget->SetupAttachment(RootComponent); 
-	
-
 }
 
-// Called when the game starts or when spawned
-void ALightSwitch::BeginPlay()
+void ALightSwitch::BeginPlay() //Called once when play button is activated.
 {
 	Super::BeginPlay();
+
+	//Setting up lights' intensity at 1000 so house can be bright as default when the game starts.
 	Light->SetIntensity(1000);
 	Light2->SetIntensity(1000);
 	Light3->SetIntensity(1000);
@@ -70,17 +70,15 @@ void ALightSwitch::BeginPlay()
 	InteractionWidget->SetVisibility(false);
 }
 
-// Called every frame
-void ALightSwitch::Tick(float DeltaTime)
+void ALightSwitch::Tick(float DeltaTime) //Called every frame.
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ALightSwitch::InteractWithMe()
 {
-	UE_LOG(LogTemp, Warning, TEXT("You have interacted with me."));
 	if (bIsOn) {
+		//Shut down all lights and play power down sound if lights are on and "E" is pressed.
 		Light->SetIntensity(0);
 		Light2->SetIntensity(0);
 		Light3->SetIntensity(0);
@@ -92,12 +90,10 @@ void ALightSwitch::InteractWithMe()
 		Light9->SetIntensity(0);
 		UGameplayStatics::PlaySound2D(GetWorld(), PowerDownSound, 1, 1, 0, NULL, false, true);
 		bIsOn = false;
-
-		// sanki buraya açýlma sesi gelecek.
-
 	}
 	else
 	{
+		//Power up all lights and play power up sound if lights are off and "E" is pressed.
 		Light->SetIntensity(1000);
 		Light2->SetIntensity(1000);
 		Light3->SetIntensity(1000);
@@ -109,25 +105,20 @@ void ALightSwitch::InteractWithMe()
 		Light9->SetIntensity(1000);
 		UGameplayStatics::PlaySound2D(GetWorld(), PowerUpSound, 1, 1, 0, NULL, false, true);
 		bIsOn = true;
-
-		// sanki buraya kapanma sesi gelecek.
 	}
-
 }
 
-void ALightSwitch::ShowInteractionWidget()
+void ALightSwitch::ShowInteractionWidget() //Show "E" letter.
 {
 	InteractionWidget->SetVisibility(true);
 }
 
-void ALightSwitch::HideInteractionWidget()
+void ALightSwitch::HideInteractionWidget() //Hide "E" letter.
 {
 	InteractionWidget->SetVisibility(false);
 }
 
-void ALightSwitch::UgaBuga()
+void ALightSwitch::UgaBuga() //Call InteractWithMe function to control lights.
 {
-
 	InteractWithMe();
 }
-
