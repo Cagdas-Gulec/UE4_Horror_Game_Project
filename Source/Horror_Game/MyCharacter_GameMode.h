@@ -6,9 +6,7 @@
 #include "GameFramework/GameMode.h"
 #include "MyCharacter_GameMode.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class HORROR_GAME_API AMyCharacter_GameMode : public AGameMode
 {
