@@ -47,7 +47,7 @@ void ALandPhone::InteractWithMe() {
 	UGameplayStatics::PlaySound2D(GetWorld(), PoliceSiren, 1, 1, 0, NULL, false, true);
 
 	FTimerHandle TimerHandle;
-	float DelayInSeconds = 7.8f;
+	float DelayInSeconds = 5.0f;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ALandPhone::ChangeLevel, DelayInSeconds, false);
 }
 
