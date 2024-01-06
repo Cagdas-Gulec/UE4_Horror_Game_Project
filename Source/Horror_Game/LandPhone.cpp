@@ -2,7 +2,9 @@
 
 
 #include "LandPhone.h"
+#include "Components/AudioComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "TimerManager.h"
 
 // Sets default values
 ALandPhone::ALandPhone()
@@ -20,6 +22,7 @@ ALandPhone::ALandPhone()
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Interaction widget."));
 	InteractionWidget->SetupAttachment(RootComponent);
 
+	PoliceSiren = CreateDefaultSubobject<USoundBase>(TEXT("PoliceSiren"));
 }
 
 // Called when the game starts or when spawned
@@ -38,11 +41,14 @@ void ALandPhone::Tick(float DeltaTime)
 }
 
 void ALandPhone::InteractWithMe() {
+
 	UE_LOG(LogTemp, Warning, TEXT("You have interacted with me."));
 
-	// sanki buraya ses gelecek.
+	UGameplayStatics::PlaySound2D(GetWorld(), PoliceSiren, 1, 1, 0, NULL, false, true);
 
-	UGameplayStatics::OpenLevel(GetWorld(), "ToBeContEndGameMap");
+	FTimerHandle TimerHandle;
+	float DelayInSeconds = 7.8f;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ALandPhone::ChangeLevel, DelayInSeconds, false);
 }
 
 void ALandPhone::ShowInteractionWidget() {
@@ -53,4 +59,8 @@ void ALandPhone::HideInteractionWidget() {
 	InteractionWidget->SetVisibility(false);
 }
 
-
+void ALandPhone::ChangeLevel()
+{
+	// Open level after delay
+	UGameplayStatics::OpenLevel(GetWorld(), "ToBeContEndGameMap");
+}

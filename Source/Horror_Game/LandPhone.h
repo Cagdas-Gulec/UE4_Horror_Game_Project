@@ -30,9 +30,9 @@ public:
 
 
 private:
+
 	UPROPERTY(EditAnywhere)
 		USceneComponent* _RootComponent;
-
 
 	UPROPERTY(EditAnywhere)
 		UStaticMeshComponent* LandPhoneMesh;
@@ -40,4 +40,9 @@ private:
 	UPROPERTY(EditAnywhere)
 		UWidgetComponent* InteractionWidget;
 
+	UPROPERTY(EditAnywhere)
+		class USoundBase* PoliceSiren;
+
+	UFUNCTION()
+		void ChangeLevel();
 };
