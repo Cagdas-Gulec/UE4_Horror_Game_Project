@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,6 +6,7 @@
 #include "Components/WidgetComponent.h"
 #include "LandPhone.generated.h"
 
+// Declares the LandPhone class, derived from AActor and implementing the IInteractionInterface
 UCLASS()
 class HORROR_GAME_API ALandPhone : public AActor, public IInteractionInterface
 {
@@ -24,12 +23,15 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	// Functions required by the InteractionInterface
 	virtual void InteractWithMe() override;
 	virtual void ShowInteractionWidget() override;
 	virtual void HideInteractionWidget() override;
 
 
 private:
+	// Components and properties of the LandPhone class
 
 	UPROPERTY(EditAnywhere)
 		USceneComponent* _RootComponent;
@@ -43,6 +45,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		class USoundBase* PoliceSiren;
 
+	// Private function to change the level after a delay
 	UFUNCTION()
 		void ChangeLevel();
 };
